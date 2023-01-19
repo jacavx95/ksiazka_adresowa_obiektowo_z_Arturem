@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    KsiazkaAdresowa ksiazkaAdresowa; //pierwszy obiekt
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy2.txt"); //pierwszy obiekt
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     ksiazkaAdresowa.rejestracjaUzytkownika(); //wywolanie metody
     ksiazkaAdresowa.rejestracjaUzytkownika();
