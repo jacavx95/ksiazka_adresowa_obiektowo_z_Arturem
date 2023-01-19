@@ -5,14 +5,10 @@
 
 using namespace std;
 
-PlikZUzytkownikami::PlikZUzytkownikami() {
-    nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
-}
-
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     string liniaZDanymiUzytkownika = "";
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
 
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
     if (plikTekstowy.good() == true)
     {
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
@@ -63,9 +59,8 @@ vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
             uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
             uzytkownicy.push_back(uzytkownik);
         }
-
+        plikTekstowy.close();
     }
-    plikTekstowy.close();
     return uzytkownicy;
 }
 

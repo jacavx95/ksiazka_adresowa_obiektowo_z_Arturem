@@ -11,7 +11,8 @@
 using namespace std;
 
 class PlikZUzytkownikami {
-    string nazwaPlikuZUzytkownikami;
+    const string nazwaPlikuZUzytkownikami;
+    //nie da siê ustaliæ zmiennej jako const, gdy nadajemy wartosc tego atrybutu poprzez konstruktor - trzeba skorzystac z LISTY INICJALIZACYJNEJ
     fstream plikTekstowy;
 
     bool czyPlikJestPusty();
@@ -19,7 +20,7 @@ class PlikZUzytkownikami {
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 
 public:
-    PlikZUzytkownikami();
+    PlikZUzytkownikami(string NAZWAPLIKUZUZYTKOWNIKAMI) : nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI) {}; //zastosowanie listy inicjalizacyjnej // konstruktor juz niepotrzebny w pliku .cpp // {} cialo konstruktora
     void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
     vector<Uzytkownik> wczytajUzytkownikowZPliku();
 };
