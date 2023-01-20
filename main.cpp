@@ -6,7 +6,6 @@ using namespace std;
 int main() {
     int idZalogowanegoUzytkownika = 0;
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy2.txt"); //pierwszy obiekt
-    //.wypiszWszystkichUzytkownikow();
 
     while (true) {
         if (idZalogowanegoUzytkownika == 0) {
@@ -36,11 +35,5 @@ int main() {
 
         //}
     }
-
-
-    //if (ksiazkaAdresowa.logowanieUzytkownika() == 0) cout << "LOL" << endl;
-    //ksiazkaAdresowa.rejestracjaUzytkownika(); //wywolanie metody
-    //ksiazkaAdresowa.logowanieUzytkownika();
-
     return 0;
 }

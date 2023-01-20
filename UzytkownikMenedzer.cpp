@@ -20,7 +20,6 @@ void UzytkownikMenedzer::rejestracjaUzytkownika() {  // :: to operator zasiegu
 Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika()  {
     Uzytkownik uzytkownik;
 
-    //uzytkownik.id = pobierzIdNowegoUzytkownika(); error: 'int Uzytkownik::id' is private within this context
     uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
 
     string login;
@@ -100,7 +99,7 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
     return 0;
 }
 
-void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(/*vector <Uzytkownik> &uzytkownicy, int idZalogowanegoUzytkownika*/) {
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     Uzytkownik uzytkownik;
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";

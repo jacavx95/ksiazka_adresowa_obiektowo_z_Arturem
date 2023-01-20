@@ -45,7 +45,6 @@ int KsiazkaAdresowa::logowanieUzytkownika() {
         }
     }
     return idZalogowanegoUzytkownika;
-    // if uzytkownikMenedzer.logowanieUzytkownika != 0 to wykonaj switch case z opcjami po zalogowaniu //zmienic zmianeHaslaUzytkownika na private
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
