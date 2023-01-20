@@ -28,9 +28,11 @@ public:
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
     int logowanieUzytkownika();
-
+    void zmianaHaslaZalogowanegoUzytkownika(/*vector <Uzytkownik> &uzytkownicy, int idZalogowanegoUzytkownika*/);
+/*
     void ustawIdZalogowanegoUzytkownika(int noweId);
     int pobierzIdZalogowanegoUzytkownika();
+*/
 };
 
 #endif

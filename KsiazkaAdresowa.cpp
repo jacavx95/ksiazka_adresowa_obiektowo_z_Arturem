@@ -13,7 +13,39 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 }
 
 int KsiazkaAdresowa::logowanieUzytkownika() {
-    uzytkownikMenedzer.logowanieUzytkownika();
+    int idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika();
+    while (idZalogowanegoUzytkownika != 0) {
+        switch (wybierzOpcjeZMenuUzytkownika()) {
+            case '1':
+                //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
+                break;
+            case '2':
+                //wyszukajAdresatowPoImieniu(adresaci);
+                break;
+            case '3':
+                //wyszukajAdresatowPoNazwisku(adresaci);
+                break;
+            case '4':
+                //wyswietlWszystkichAdresatow(adresaci);
+                break;
+            case '5':
+                //idUsunietegoAdresata = usunAdresata(adresaci);
+                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
+                break;
+            case '6':
+                //edytujAdresata(adresaci);
+                break;
+            case '7':
+                zmianaHaslaZalogowanegoUzytkownika();
+                break;
+            case '8':
+                //adresaci.clear();
+                idZalogowanegoUzytkownika = 0;
+                break;
+        }
+    }
+    return idZalogowanegoUzytkownika;
+    // if uzytkownikMenedzer.logowanieUzytkownika != 0 to wykonaj switch case z opcjami po zalogowaniu //zmienic zmianeHaslaUzytkownika na private
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
@@ -52,5 +84,9 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
+}
+
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
+    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 

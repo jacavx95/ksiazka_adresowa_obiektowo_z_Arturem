@@ -86,6 +86,7 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     cout << endl << "ID zalogowanego uzytkownika: " << uzytkownicy[i].pobierzId() << endl;
+                    idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
                     return uzytkownicy[i].pobierzId();
                 }
             }
@@ -99,6 +100,25 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
     return 0;
 }
 
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(/*vector <Uzytkownik> &uzytkownicy, int idZalogowanegoUzytkownika*/) {
+    Uzytkownik uzytkownik;
+    string noweHaslo = "";
+    cout << "Podaj nowe haslo: ";
+    noweHaslo = MetodyPomocnicze::wczytajLinie();
+
+    for (int i = 0; i < uzytkownicy.size(); i++)
+    {
+        if (uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika)
+        {
+            uzytkownicy[i].ustawHaslo(noweHaslo);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
+/*
 //setter
 void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
     if (noweId >= 0) //walidacja - mechanizm kontroli bledow
@@ -109,3 +129,4 @@ void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
 int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
     return idZalogowanegoUzytkownika;
 }
+*/
