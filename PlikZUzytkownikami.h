@@ -13,7 +13,6 @@ using namespace std;
 class PlikZUzytkownikami {
     const string nazwaPlikuZUzytkownikami;
     //nie da siê ustaliæ zmiennej jako const, gdy nadajemy wartosc tego atrybutu poprzez konstruktor - trzeba skorzystac z LISTY INICJALIZACYJNEJ
-    fstream plikTekstowy;
 
     bool czyPlikJestPusty();
     string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);

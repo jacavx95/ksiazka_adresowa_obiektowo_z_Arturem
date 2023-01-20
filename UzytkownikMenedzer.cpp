@@ -67,3 +67,45 @@ void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
 void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
+
+int UzytkownikMenedzer::logowanieUzytkownika() {
+    Uzytkownik uzytkownik;
+    string login = "", haslo = "";
+
+    cout << endl << "Podaj login: ";
+    login = MetodyPomocnicze::wczytajLinie();
+    uzytkownik.ustawLogin(login);
+
+    for (int i = 0; i < uzytkownicy.size(); i++) {
+        if (uzytkownicy[i].pobierzLogin() == login) {
+            for (int iloscProb = 3; iloscProb > 0; iloscProb--) {
+                cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
+                haslo = MetodyPomocnicze::wczytajLinie();
+
+                if (uzytkownicy[i].pobierzHaslo() == haslo) {
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    cout << endl << "ID zalogowanego uzytkownika: " << uzytkownicy[i].pobierzId() << endl;
+                    return uzytkownicy[i].pobierzId();
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return 0;
+        }
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return 0;
+}
+
+//setter
+void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
+    if (noweId >= 0) //walidacja - mechanizm kontroli bledow
+        idZalogowanegoUzytkownika = noweId;
+}
+
+//getter
+int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
+    return idZalogowanegoUzytkownika;
+}
