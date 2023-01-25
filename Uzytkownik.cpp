@@ -5,8 +5,8 @@ using namespace std;
 
 //settery - metody do ustawiania wartosci atrybutow
 void Uzytkownik::ustawId(int noweId) {
-    if (noweId >= 0) //walidacja - mechanizm kontroli bledow
-        id = noweId;
+    if (noweId >= 0) id = noweId;
+    //walidacja - mechanizm kontroli bledow
 }
 void Uzytkownik::ustawLogin(string nowyLogin) {
     login = nowyLogin;
