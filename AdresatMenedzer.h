@@ -23,14 +23,14 @@ class AdresatMenedzer {
 
     Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
     void dopiszAdresataDoPliku();
-    void wyswietlWszystkichAdresatow();
+    void wyswietlDaneAdresata(Adresat adresat);
 
 public:
     AdresatMenedzer(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {};
-    void wyswietlDaneAdresata();
     int dodajAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
     int wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    void wyswietlWszystkichAdresatow();
 };
 
 #endif
