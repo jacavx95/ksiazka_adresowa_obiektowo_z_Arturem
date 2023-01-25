@@ -10,7 +10,6 @@
 #include "Uzytkownik.h"
 #include "PlikZUzytkownikami.h"
 #include "MetodyPomocnicze.h"
-//#include "AdresatMenedzer.h"
 
 using namespace std;
 
@@ -26,9 +25,9 @@ public:
     int idZalogowanegoUzytkownika;
     UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {};
     void rejestracjaUzytkownika();
+    int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
-    int logowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
 };
 

@@ -25,15 +25,15 @@ int main() {
                     break;
             }
         }
-        //else {
-            /*if (adresaci.empty() == true)
+        /*else {
+            if (adresaci.empty() == true)
                 // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
                 // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
                 // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
                 idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-            wybor = wybierzOpcjeZMenuUzytkownika();*/
+            wybor = wybierzOpcjeZMenuUzytkownika();
 
-        //}
+        }*/
     }
     return 0;
 }

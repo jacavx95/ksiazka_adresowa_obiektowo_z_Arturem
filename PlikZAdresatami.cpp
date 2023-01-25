@@ -1,7 +1,4 @@
 #include <iostream>
-//#include <vector>
-//#include <fstream>
-//#include <sstream>
 #include "PlikZAdresatami.h"
 
 using namespace std;
@@ -30,7 +27,6 @@ void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
         cout << "Nie udalo sie otworzyc pliku i zapisac w nim danych." << endl;
     }
     plikTekstowy.close();
-    //system("pause");
 }
 
 string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat)

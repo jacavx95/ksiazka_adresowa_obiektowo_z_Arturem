@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-//#include <sstream>
 #include <cstdlib>
 #include "MetodyPomocnicze.h"
 #include "Adresat.h"
@@ -15,9 +14,6 @@ class PlikZAdresatami {
     const string nazwaPlikuZAdresatami;
     string nazwaTymczasowegoPlikuZAdresatami;
 
-
-    int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami();
-    Adresat pobierzDaneAdresata();
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
     bool czyPlikJestPusty();
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);

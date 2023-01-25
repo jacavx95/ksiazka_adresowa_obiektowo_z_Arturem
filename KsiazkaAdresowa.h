@@ -9,7 +9,6 @@ using namespace std;
 
 class KsiazkaAdresowa {
     UzytkownikMenedzer uzytkownikMenedzer;
-    //AdresatMenedzer adresatMenedzer;
     char wybor;
 
 private:
@@ -20,7 +19,7 @@ public:
         uzytkownikMenedzer.wczytajUzytkownikowZPliku();
     }
     void rejestracjaUzytkownika();
-    int logowanieUzytkownika(); //int poniewaz bede tu przekazywac idZalogowanegoUzytkownika
+    int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
