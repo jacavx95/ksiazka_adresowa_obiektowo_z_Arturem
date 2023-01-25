@@ -13,11 +13,14 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 }
 
 int KsiazkaAdresowa::logowanieUzytkownika() {
-    int idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika();
-    while (idZalogowanegoUzytkownika != 0) {
+    int idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika(); // do poprawy - uzyc settera
+    AdresatMenedzer adresatMenedzer("Adresaci.txt");
+    int idOstatniegoAdresata = adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika); // ?????? ma byc ??????
+
+    while (idZalogowanegoUzytkownika != 0) { // do poprawy - uzyc gettera
         switch (wybierzOpcjeZMenuUzytkownika()) {
             case '1':
-                //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
+                idOstatniegoAdresata = adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
                 break;
             case '2':
                 //wyszukajAdresatowPoImieniu(adresaci);

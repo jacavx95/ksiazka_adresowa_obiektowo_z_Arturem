@@ -1,0 +1,11 @@
+
+1|1|Y|Y|y|y|y|
+2|1|D|D|d|d|d|
+3|6|B|B|b|b|b|
+4|1|G|G|g|g|g|
+5|6|K|K|k|k|k|
+6|6|U|U|u|u|u|
+7|6|R|R|r|r|r|
+8|1|E|E|e|e|e|
+9|2|T|T|t|t|t|
+10|6|V|V|v|v|v|

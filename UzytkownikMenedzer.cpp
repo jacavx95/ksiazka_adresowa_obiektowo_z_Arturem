@@ -84,8 +84,6 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                 if (uzytkownicy[i].pobierzHaslo() == haslo) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    cout << endl << "ID zalogowanego uzytkownika: " << uzytkownicy[i].pobierzId() << endl;
-                    idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
                     return uzytkownicy[i].pobierzId();
                 }
             }
@@ -116,16 +114,3 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     }
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
 }
-
-/*
-//setter
-void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int noweId) {
-    if (noweId >= 0) //walidacja - mechanizm kontroli bledow
-        idZalogowanegoUzytkownika = noweId;
-}
-
-//getter
-int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
-    return idZalogowanegoUzytkownika;
-}
-*/
