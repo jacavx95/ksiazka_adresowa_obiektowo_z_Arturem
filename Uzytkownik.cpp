@@ -1,7 +1,4 @@
-#include <iostream>
 #include "Uzytkownik.h"
-
-using namespace std;
 
 //settery - metody do ustawiania wartosci atrybutow
 void Uzytkownik::ustawId(int noweId) {

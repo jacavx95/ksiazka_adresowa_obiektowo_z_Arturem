@@ -1,9 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
 #include "PlikZUzytkownikami.h"
-
-using namespace std;
 
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     string liniaZDanymiUzytkownika = "";
@@ -20,7 +15,7 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
         }
         else
         {
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
+            plikTekstowy << liniaZDanymiUzytkownika << endl;
         }
     }
     else

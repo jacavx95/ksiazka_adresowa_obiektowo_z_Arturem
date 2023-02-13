@@ -1,28 +1,18 @@
-#include <iostream>
 #include "UzytkownikMenedzer.h"
 
-using namespace std;
-
-void UzytkownikMenedzer::rejestracjaUzytkownika() {  // :: to operator zasiegu
-    Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
-
-    uzytkownicy.push_back(uzytkownik);
-    plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
-    //PlikZUzytkownikami::dopiszUzytkownikaDoPliku(uzytkownik); nie dziala z uzyciem statycznego voida
+void UzytkownikMenedzer::rejestracjaUzytkownika() {
+    uzytkownicy.push_back(podajDaneNowegoUzytkownika());
+    plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownicy.back());
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
 }
 
-//Uzytkownik to typ danych, jakie zwraca funkcja;;
-//KsiazkaAdresowa to klasa, do ktorej odnosi sie metoda poprzez operator zasiegu;;
-//podajDaneNowegoUzytkownika() to metoda klasy KsiazkaAdresowa
 Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika()  {
     Uzytkownik uzytkownik;
+    string login;
 
     uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
-
-    string login;
     do
     {
         cout << "Podaj login: ";
@@ -46,7 +36,7 @@ int UzytkownikMenedzer::pobierzIdNowegoUzytkownika() {
 }
 
 bool UzytkownikMenedzer::czyIstniejeLogin(string login) {
-    for (int i = 0; i < uzytkownicy.size(); i++) {
+    for (unsigned int i = 0; i < uzytkownicy.size(); i++) {
         if (uzytkownicy[i].pobierzLogin() == login) {
             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
             return true;
@@ -56,7 +46,7 @@ bool UzytkownikMenedzer::czyIstniejeLogin(string login) {
 }
 
 void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
-    for (int i = 0; i < uzytkownicy.size(); i++) {
+    for (int i = 0; i < (int) uzytkownicy.size(); i++) {
         cout << uzytkownicy[i].pobierzId() << endl;
         cout << uzytkownicy[i].pobierzLogin() << endl;
         cout << uzytkownicy[i].pobierzHaslo() << endl;
@@ -68,14 +58,12 @@ void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
 }
 
 int UzytkownikMenedzer::logowanieUzytkownika() {
-    Uzytkownik uzytkownik;
     string login = "", haslo = "";
 
     cout << endl << "Podaj login: ";
     login = MetodyPomocnicze::wczytajLinie();
-    uzytkownik.ustawLogin(login);
 
-    for (int i = 0; i < uzytkownicy.size(); i++) {
+    for (int i = 0; i < (int) uzytkownicy.size(); i++) {
         if (uzytkownicy[i].pobierzLogin() == login) {
             for (int iloscProb = 3; iloscProb > 0; iloscProb--) {
                 cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
@@ -84,7 +72,8 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                 if (uzytkownicy[i].pobierzHaslo() == haslo) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return uzytkownicy[i].pobierzId();
+                    uzytkownik.ustawId(uzytkownicy[i].pobierzId());
+                    return uzytkownik.pobierzId();
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -98,19 +87,24 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
 }
 
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
-    Uzytkownik uzytkownik;
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
     noweHaslo = MetodyPomocnicze::wczytajLinie();
 
-    for (int i = 0; i < uzytkownicy.size(); i++)
-    {
-        if (uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika)
-        {
+    for (int i = 0; i < (int) uzytkownicy.size(); i++) {
+        if (uzytkownicy[i].pobierzId() == uzytkownik.pobierzId()) {
             uzytkownicy[i].ustawHaslo(noweHaslo);
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
         }
     }
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
+int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
+    return uzytkownik.pobierzId();
+}
+
+void UzytkownikMenedzer::ustawIdUzytkownika(int id) {
+    if (id >= 0) uzytkownik.ustawId(id);
 }

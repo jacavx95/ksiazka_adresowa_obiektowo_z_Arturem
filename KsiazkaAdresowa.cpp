@@ -1,8 +1,12 @@
-#include <iostream>
 #include "KsiazkaAdresowa.h"
-#include "MetodyPomocnicze.h"
 
-using namespace std;
+int KsiazkaAdresowa::sprawdzenieIdUzytkownika () {
+    return uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::ustawIdUzytkownika(int id) {
+    uzytkownikMenedzer.ustawIdUzytkownika(id);
+}
 
 void KsiazkaAdresowa::rejestracjaUzytkownika() {
     uzytkownikMenedzer.rejestracjaUzytkownika();
@@ -12,42 +16,24 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
     uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
 }
 
-int KsiazkaAdresowa::logowanieUzytkownika() {
-    int idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika(); // do poprawy - uzyc settera
-    AdresatMenedzer adresatMenedzer("Adresaci.txt");
-    int idOstatniegoAdresata = adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika); // ?????? ma byc ??????
+void KsiazkaAdresowa::logowanieUzytkownika() {
+    uzytkownikMenedzer.logowanieUzytkownika();
+}
 
-    while (idZalogowanegoUzytkownika != 0) { // do poprawy - uzyc gettera
-        switch (wybierzOpcjeZMenuUzytkownika()) {
-            case '1':
-                idOstatniegoAdresata = adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
-                break;
-            case '2':
-                //wyszukajAdresatowPoImieniu(adresaci);
-                break;
-            case '3':
-                //wyszukajAdresatowPoNazwisku(adresaci);
-                break;
-            case '4':
-                adresatMenedzer.wyswietlWszystkichAdresatow(/*adresaci*/);
-                break;
-            case '5':
-                //idUsunietegoAdresata = usunAdresata(adresaci);
-                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
-                break;
-            case '6':
-                //edytujAdresata(adresaci);
-                break;
-            case '7':
-                zmianaHaslaZalogowanegoUzytkownika();
-                break;
-            case '8':
-                //adresaci.clear();
-                idZalogowanegoUzytkownika = 0;
-                break;
-        }
-    }
-    return idZalogowanegoUzytkownika;
+void KsiazkaAdresowa::wczytajAdresatowZalogowanegoUzytkownikaZPliku() {
+    adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+}
+
+void KsiazkaAdresowa::dodajAdresata() {
+    adresatMenedzer.dodajAdresata(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+}
+
+void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
+    adresatMenedzer.wyswietlWszystkichAdresatow();
+}
+
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
+    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 
 char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
@@ -70,6 +56,9 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     char wybor;
 
     system("cls");
+
+    cout << "ID uzytkownika: " << uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika() << endl;
+
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
@@ -86,9 +75,5 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
-}
-
-void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
-    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 

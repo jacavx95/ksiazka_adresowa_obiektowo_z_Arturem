@@ -1,7 +1,4 @@
-#include <iostream>
 #include "MetodyPomocnicze.h"
-
-using namespace std;
 
 string MetodyPomocnicze::konwerjsaIntNaString(int liczba) {
     ostringstream ss;
@@ -12,6 +9,7 @@ string MetodyPomocnicze::konwerjsaIntNaString(int liczba) {
 
 string MetodyPomocnicze::wczytajLinie() {
     string wejscie = "";
+    cin.sync();
     getline(cin, wejscie);
     return wejscie;
 }
@@ -22,6 +20,7 @@ char MetodyPomocnicze::wczytajZnak() {
 
     while (true)
     {
+        cin.sync();
         getline(cin, wejscie);
 
         if (wejscie.length() == 1)
