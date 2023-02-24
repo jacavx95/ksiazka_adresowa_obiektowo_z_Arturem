@@ -5,7 +5,6 @@ using namespace std;
 
 int main() {
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
-    ksiazkaAdresowa.ustawIdUzytkownika(0);
 
     while (true) {
         if (ksiazkaAdresowa.sprawdzenieIdUzytkownika() == 0) {
@@ -54,7 +53,7 @@ int main() {
                         break;
                     case '8':
                         //adresaci.clear();
-                        ksiazkaAdresowa.ustawIdUzytkownika(0);
+                        ksiazkaAdresowa.wylogowanie();
                         break;
                 }
             }

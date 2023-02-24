@@ -17,13 +17,13 @@ public:
         uzytkownikMenedzer.wczytajUzytkownikowZPliku();
     }
     int sprawdzenieIdUzytkownika();
-    void ustawIdUzytkownika(int id);
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wczytajAdresatowZalogowanegoUzytkownikaZPliku();
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
     void zmianaHaslaZalogowanegoUzytkownika();
+    void wylogowanie();
     void wypiszWszystkichUzytkownikow();
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();

@@ -16,15 +16,17 @@ using namespace std;
 class AdresatMenedzer {
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
+    int idZalogowanegoUzytkownika;
 
-    Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
+    Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
 
 public:
     AdresatMenedzer(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {};
-    void dodajAdresata(int idZalogowanegoUzytkownika);
+    void ustawIdZalogowanegoUzytkownika(int id);
+    void dodajAdresata();
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    int wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    void wczytajAdresatowZalogowanegoUzytkownikaZPliku();
     void wyswietlWszystkichAdresatow();
 };
 

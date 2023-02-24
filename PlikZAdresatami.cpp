@@ -3,7 +3,7 @@
 void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::out | ios::app);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
 
     if (plikTekstowy.good() == true)
     {
@@ -54,7 +54,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::in);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
 
     if (plikTekstowy.good() == true) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
@@ -70,6 +70,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     else {
         cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
         plikTekstowy.close();
+        return adresaci;
     }
 
 }
@@ -128,7 +129,7 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() {
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
 
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::in);
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
 
     if (plikTekstowy.good() == true) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
@@ -136,6 +137,5 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() {
         }
     }
 
-    int idAdresata = MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneOstaniegoAdresataWPliku, pozycjaRozpoczeciaIdAdresata));
-    return idAdresata;
+    return MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneOstaniegoAdresataWPliku, pozycjaRozpoczeciaIdAdresata));
 }

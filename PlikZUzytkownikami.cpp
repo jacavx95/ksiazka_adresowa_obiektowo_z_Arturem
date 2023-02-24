@@ -67,14 +67,11 @@ Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkown
     string pojedynczaDanaUzytkownika = "";
     int numerPojedynczejDanejUzytkownika = 1;
 
-    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++)
-    {
-        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|')
-        {
+    for (unsigned int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
+        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
             pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
         }
-        else
-        {
+        else {
             switch(numerPojedynczejDanejUzytkownika)
             {
             case 1:
@@ -101,25 +98,20 @@ void PlikZUzytkownikami::zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik>
 
     plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::out);
 
-    if (plikTekstowy.good() == true)
-    {
-        for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
-        {
+    if (plikTekstowy.good() == true) {
+        for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++) {
             liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(*itr);
 
-            if (itr == itrKoniec)
-            {
-               plikTekstowy << liniaZDanymiUzytkownika;
+            if (itr == itrKoniec) {
+               plikTekstowy << liniaZDanymiUzytkownika << endl;
             }
-            else
-            {
+            else {
                 plikTekstowy << liniaZDanymiUzytkownika << endl;
             }
             liniaZDanymiUzytkownika = "";
         }
     }
-    else
-    {
+    else {
         cout << "Nie mozna otworzyc pliku " << nazwaPlikuZUzytkownikami << endl;
     }
     plikTekstowy.close();
