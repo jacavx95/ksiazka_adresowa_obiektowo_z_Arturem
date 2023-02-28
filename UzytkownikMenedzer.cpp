@@ -52,10 +52,6 @@ void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
     }
 }
 
-void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
-
 int UzytkownikMenedzer::logowanieUzytkownika() {
     string login = "", haslo = "";
 
@@ -110,4 +106,11 @@ int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
 
 void UzytkownikMenedzer::ustawIdUzytkownika(int id) {
     if (id >= 0) uzytkownik.ustawId(id);
+}
+
+bool UzytkownikMenedzer::czyUzytkownikJestZalogowany() {
+    if (idZalogowanegoUzytkownika > 0)
+        return true;
+    else
+        return false;
 }

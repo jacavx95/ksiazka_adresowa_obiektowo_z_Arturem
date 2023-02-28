@@ -25,7 +25,7 @@ int main() {
             }
         }
         else {
-            ksiazkaAdresowa.wczytajAdresatowZalogowanegoUzytkownikaZPliku();
+            //ksiazkaAdresowa.wczytajAdresatowZalogowanegoUzytkownikaZPliku();
 
             while (ksiazkaAdresowa.sprawdzenieIdUzytkownika() != 0) {
                 switch (ksiazkaAdresowa.wybierzOpcjeZMenuUzytkownika()) {
