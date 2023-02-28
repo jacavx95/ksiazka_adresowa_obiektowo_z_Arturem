@@ -1,9 +1,5 @@
 #include "AdresatMenedzer.h"
 
-/*void AdresatMenedzer::ustawIdZalogowanegoUzytkownika(int id) {
-    idZalogowanegoUzytkownika = id;
-}*/
-
 void AdresatMenedzer::dodajAdresata() {
     Adresat adresat;
     Uzytkownik uzytkownik;
@@ -53,10 +49,6 @@ string AdresatMenedzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
     }
     return tekst;
 }
-
-/*void AdresatMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku() {
-    adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-}*/
 
 void AdresatMenedzer::wyswietlWszystkichAdresatow() {
     system("cls");

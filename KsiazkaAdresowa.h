@@ -24,7 +24,6 @@ public:
     int sprawdzenieIdUzytkownika();
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
-    //void wczytajAdresatowZalogowanegoUzytkownikaZPliku();
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
     void zmianaHaslaZalogowanegoUzytkownika();

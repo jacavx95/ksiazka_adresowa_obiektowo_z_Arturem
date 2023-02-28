@@ -13,16 +13,11 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 }
 
 void KsiazkaAdresowa::logowanieUzytkownika() {
-    //adresatMenedzer.ustawIdZalogowanegoUzytkownika(uzytkownikMenedzer.logowanieUzytkownika());
     uzytkownikMenedzer.logowanieUzytkownika();
     if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()) {
         adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
     }
 }
-
-/*void KsiazkaAdresowa::wczytajAdresatowZalogowanegoUzytkownikaZPliku() {
-    adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku();
-}*/
 
 void KsiazkaAdresowa::dodajAdresata() {
     if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())

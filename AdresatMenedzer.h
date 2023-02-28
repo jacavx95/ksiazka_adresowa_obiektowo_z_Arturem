@@ -25,10 +25,8 @@ public:
     AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika) : plikZAdresatami(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika) {
         adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
-    /*void ustawIdZalogowanegoUzytkownika(int id);*/
     void dodajAdresata();
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    /*void wczytajAdresatowZalogowanegoUzytkownikaZPliku();*/
     void wyswietlWszystkichAdresatow();
 };
 
