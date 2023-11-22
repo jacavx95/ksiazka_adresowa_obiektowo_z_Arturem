@@ -26,8 +26,13 @@ public:
         adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
     void dodajAdresata();
-    string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
     void wyswietlWszystkichAdresatow();
+    void edytujAdresata();
+    void usunAdresata();
+    string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+
 };
 
 #endif

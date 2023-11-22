@@ -28,6 +28,14 @@ void KsiazkaAdresowa::dodajAdresata() {
     }
 }
 
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu(){
+    adresatMenedzer->wyszukajAdresatowPoImieniu();
+}
+
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku(){
+    adresatMenedzer->wyszukajAdresatowPoNazwisku();
+}
+
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
     if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
         adresatMenedzer->wyswietlWszystkichAdresatow();
@@ -35,6 +43,14 @@ void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
         cout << "Aby zobaczyc adresatow danego uzytkownika, nalezy sie najpierw zalogowac" << endl;
         system("pause");
     }
+}
+
+void KsiazkaAdresowa::edytujAdresata() {
+    adresatMenedzer->edytujAdresata();
+}
+
+void KsiazkaAdresowa::usunAdresata() {
+    adresatMenedzer->usunAdresata();
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
@@ -76,8 +92,8 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     cout << "2. Wyszukaj po imieniu" << endl;
     cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-    cout << "5. Usun adresata" << endl;
-    cout << "6. Edytuj adresata" << endl;
+    cout << "5. Edytuj adresata" << endl;
+    cout << "6. Usun adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
@@ -87,4 +103,5 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
 
     return wybor;
 }
+
 

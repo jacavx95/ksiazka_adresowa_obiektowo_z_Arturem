@@ -7,12 +7,13 @@
 #include <cstdlib>
 #include "MetodyPomocnicze.h"
 #include "Adresat.h"
+//#include "AdresatMenedzer.h"
 
 using namespace std;
 
 class PlikZAdresatami {
     const string NAZWA_PLIKU_Z_ADRESATAMI;
-    //string nazwaTymczasowegoPlikuZAdresatami; do edytowania i usuwania, na pozniejszym etapie
+    //string nazwaTymczasowegoPlikuZAdresatami; //do edytowania i usuwania, na pozniejszym etapie
     int idOstatniegoAdresata;
 
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
@@ -25,6 +26,7 @@ public:
     void dopiszAdresataDoPliku(Adresat adresat);
     vector<Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami();
+    void aktualizowaniePlikuZDanymiAdresatow(vector<Adresat> adresaci, int idAdresataDoEdycji);
 };
 
 #endif

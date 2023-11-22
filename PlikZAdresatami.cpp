@@ -139,3 +139,56 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() {
 
     return MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneOstaniegoAdresataWPliku, pozycjaRozpoczeciaIdAdresata));
 }
+
+void PlikZAdresatami::aktualizowaniePlikuZDanymiAdresatow(vector<Adresat> adresaci, int idAdresataDoEdycji) {
+    fstream plikTekstowy, plikTymczasowy;
+    string liniaZDanymiAdresataWPliku = "";
+    string cyfra = "";
+    int idAdresataWLiniiZDanymiAdresataWPliku = 0;
+    int numerElementuWektora = 0;
+    bool sprawdzenieCzyZnajdujeTakiElementWektora = false;
+
+
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
+    if (!plikTekstowy.good()) {
+        cout << "Plik nie istnieje" << endl;
+        exit(0);
+    }
+
+    plikTymczasowy.open("Adresaci_plik_tymczasowy.txt", ios::out);
+    if (!plikTymczasowy.good()) {
+        cout << "Plik nie istnieje" << endl;
+        exit(0);
+    }
+    for (int i = 0; i < (int) adresaci.size(); i++) {
+        if (adresaci[i].pobierzId() == idAdresataDoEdycji) {
+            sprawdzenieCzyZnajdujeTakiElementWektora = true; //po usunieciu wpisu z wektora dochodzi do przesuniecia numerow jego elementow
+            numerElementuWektora = i;
+            break;
+        }
+    }
+    while (getline(plikTekstowy,liniaZDanymiAdresataWPliku)) {
+        cyfra = liniaZDanymiAdresataWPliku[0];
+        idAdresataWLiniiZDanymiAdresataWPliku = MetodyPomocnicze::konwersjaStringNaInt(cyfra);
+        if (idAdresataWLiniiZDanymiAdresataWPliku != idAdresataDoEdycji) {
+            plikTymczasowy << liniaZDanymiAdresataWPliku << endl;
+        }
+        else {
+            if (sprawdzenieCzyZnajdujeTakiElementWektora == true) {
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzId() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzIdUzytkownika() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzImie() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzNazwisko() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzNumerTelefonu() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzEmail() << '|';
+                plikTymczasowy << adresaci[numerElementuWektora].pobierzAdres() << '|';
+                plikTymczasowy << endl;
+            }
+            else continue;
+        }
+    }
+    plikTekstowy.close();
+    plikTymczasowy.close();
+    remove("Adresaci.txt");
+    rename("Adresaci_plik_tymczasowy.txt", "Adresaci.txt");
+}
