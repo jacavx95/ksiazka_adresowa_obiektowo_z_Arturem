@@ -20,6 +20,9 @@ class AdresatMenedzer {
 
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
+    char podajDaneAdresataDoEdycji(int numerElementuWektora);
+    char menuPrzyBrakuAdresata();
+    char usunWpisKsiazkiAdresowej(int numerElementuWektora);
 
 public:
     AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika) : plikZAdresatami(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika) {
@@ -31,8 +34,6 @@ public:
     void wyswietlWszystkichAdresatow();
     void edytujAdresata();
     void usunAdresata();
-    string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-
 };
 
 #endif

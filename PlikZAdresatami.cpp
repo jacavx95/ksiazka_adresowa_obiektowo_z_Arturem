@@ -3,13 +3,14 @@
 void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+    //plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+    plikTekstowy.open(NAZWA_PLIKU.c_str(), ios::out | ios::app);
 
-    if (plikTekstowy.good() == true)
+    if (plikTekstowy.good())
     {
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
 
-        if (czyPlikJestPusty() == true)
+        if (czyPlikJestPusty())
         {
             plikTekstowy << liniaZDanymiAdresata;
         }
@@ -54,9 +55,10 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    //plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plikTekstowy.open(NAZWA_PLIKU.c_str(), ios::in);
 
-    if (plikTekstowy.good() == true) {
+    if (plikTekstowy.good()) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
             if (idZalogowanegoUzytkownika == pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(daneJednegoAdresataOddzielonePionowymiKreskami)) {
                 adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami);
@@ -129,9 +131,10 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() {
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
 
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    //plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plikTekstowy.open(NAZWA_PLIKU.c_str(), ios::in);
 
-    if (plikTekstowy.good() == true) {
+    if (plikTekstowy.good()) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
             if (daneJednegoAdresataOddzielonePionowymiKreskami != "") daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
         }
@@ -140,16 +143,14 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() {
     return MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneOstaniegoAdresataWPliku, pozycjaRozpoczeciaIdAdresata));
 }
 
-void PlikZAdresatami::aktualizowaniePlikuZDanymiAdresatow(vector<Adresat> adresaci, int idAdresataDoEdycji) {
+void PlikZAdresatami::aktualizowaniePlikuZDanymiAdresatowPoEdycji(Adresat adresat) {
     fstream plikTekstowy, plikTymczasowy;
     string liniaZDanymiAdresataWPliku = "";
     string cyfra = "";
     int idAdresataWLiniiZDanymiAdresataWPliku = 0;
-    int numerElementuWektora = 0;
-    bool sprawdzenieCzyZnajdujeTakiElementWektora = false;
 
-
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
+    //plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
+    plikTekstowy.open(NAZWA_PLIKU, ios::in);
     if (!plikTekstowy.good()) {
         cout << "Plik nie istnieje" << endl;
         exit(0);
@@ -160,31 +161,69 @@ void PlikZAdresatami::aktualizowaniePlikuZDanymiAdresatow(vector<Adresat> adresa
         cout << "Plik nie istnieje" << endl;
         exit(0);
     }
-    for (int i = 0; i < (int) adresaci.size(); i++) {
-        if (adresaci[i].pobierzId() == idAdresataDoEdycji) {
-            sprawdzenieCzyZnajdujeTakiElementWektora = true; //po usunieciu wpisu z wektora dochodzi do przesuniecia numerow jego elementow
-            numerElementuWektora = i;
-            break;
-        }
-    }
+
     while (getline(plikTekstowy,liniaZDanymiAdresataWPliku)) {
-        cyfra = liniaZDanymiAdresataWPliku[0];
+        cyfra = "";
+        for (int i = 0; i < (int) liniaZDanymiAdresataWPliku.length(); i++) {
+            if (isdigit(liniaZDanymiAdresataWPliku[i])) {
+                cyfra += liniaZDanymiAdresataWPliku[i];
+            }
+            else break;
+        }
         idAdresataWLiniiZDanymiAdresataWPliku = MetodyPomocnicze::konwersjaStringNaInt(cyfra);
-        if (idAdresataWLiniiZDanymiAdresataWPliku != idAdresataDoEdycji) {
+        if (idAdresataWLiniiZDanymiAdresataWPliku != adresat.pobierzId()) {
             plikTymczasowy << liniaZDanymiAdresataWPliku << endl;
         }
         else {
-            if (sprawdzenieCzyZnajdujeTakiElementWektora == true) {
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzId() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzIdUzytkownika() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzImie() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzNazwisko() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzNumerTelefonu() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzEmail() << '|';
-                plikTymczasowy << adresaci[numerElementuWektora].pobierzAdres() << '|';
+                plikTymczasowy << adresat.pobierzId() << '|';
+                plikTymczasowy << adresat.pobierzIdUzytkownika() << '|';
+                plikTymczasowy << adresat.pobierzImie() << '|';
+                plikTymczasowy << adresat.pobierzNazwisko() << '|';
+                plikTymczasowy << adresat.pobierzNumerTelefonu() << '|';
+                plikTymczasowy << adresat.pobierzEmail() << '|';
+                plikTymczasowy << adresat.pobierzAdres() << '|';
                 plikTymczasowy << endl;
+        }
+    }
+    plikTekstowy.close();
+    plikTymczasowy.close();
+    remove("Adresaci.txt");
+    rename("Adresaci_plik_tymczasowy.txt", "Adresaci.txt");
+}
+
+void PlikZAdresatami::aktualizowaniePlikuZDanymiAdresatowPoUsunieciu(int idAdresataDoUsuniecia) {
+    fstream plikTekstowy, plikTymczasowy;
+    string liniaZDanymiAdresataWPliku = "";
+    string cyfra = "";
+    int idAdresataWLiniiZDanymiAdresataWPliku = 0;
+
+    //plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
+    plikTekstowy.open(NAZWA_PLIKU, ios::in);
+    if (!plikTekstowy.good()) {
+        cout << "Plik nie istnieje" << endl;
+        exit(0);
+    }
+
+    plikTymczasowy.open("Adresaci_plik_tymczasowy.txt", ios::out);
+    if (!plikTymczasowy.good()) {
+        cout << "Plik nie istnieje" << endl;
+        exit(0);
+    }
+
+    while (getline(plikTekstowy,liniaZDanymiAdresataWPliku)) {
+        cyfra = "";
+        for (int i = 0; i < (int) liniaZDanymiAdresataWPliku.length(); i++) {
+            if (isdigit(liniaZDanymiAdresataWPliku[i])) {
+                cyfra += liniaZDanymiAdresataWPliku[i];
             }
-            else continue;
+            else break;
+        }
+        idAdresataWLiniiZDanymiAdresataWPliku = MetodyPomocnicze::konwersjaStringNaInt(cyfra);
+        if (idAdresataWLiniiZDanymiAdresataWPliku != idAdresataDoUsuniecia) {
+            plikTymczasowy << liniaZDanymiAdresataWPliku << endl;
+        }
+        else {
+                plikTymczasowy << "";
         }
     }
     plikTekstowy.close();

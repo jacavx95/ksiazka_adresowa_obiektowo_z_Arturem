@@ -33,6 +33,21 @@ char MetodyPomocnicze::wczytajZnak() {
     return znak;
 }
 
+int MetodyPomocnicze::wczytajLiczbe() {
+    int liczba;
+    string linia;
+
+    while (true) {
+        linia = wczytajLinie();
+
+        stringstream myStream(linia);
+        if (myStream >> liczba) break;
+
+        cout << "To nie liczba, podaj ponownie" << endl;
+    }
+    return liczba;
+}
+
 string MetodyPomocnicze::pobierzLiczbe(string tekst, int pozycjaZnaku) {
     string liczba = "";
     while(isdigit(tekst[pozycjaZnaku]) == true)
@@ -49,6 +64,24 @@ int MetodyPomocnicze::konwersjaStringNaInt(string liczba) {
     iss >> liczbaInt;
 
     return liczbaInt;
+}
+
+string MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
+    if (!tekst.empty()) {
+        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
+        tekst[0] = toupper(tekst[0]);
+    }
+    return tekst;
+}
+
+string MetodyPomocnicze::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
+    string liniaZDanymiUzytkownika = "";
+
+    liniaZDanymiUzytkownika += MetodyPomocnicze::konwerjsaIntNaString(uzytkownik.pobierzId())+ '|';
+    liniaZDanymiUzytkownika += uzytkownik.pobierzLogin() + '|';
+    liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
+
+    return liniaZDanymiUzytkownika;
 }
 
 

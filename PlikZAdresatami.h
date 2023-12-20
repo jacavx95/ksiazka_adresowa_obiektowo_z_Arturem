@@ -5,16 +5,15 @@
 #include <vector>
 #include <fstream>
 #include <cstdlib>
+#include <algorithm>
 #include "MetodyPomocnicze.h"
 #include "Adresat.h"
-//#include "AdresatMenedzer.h"
+#include "PlikTekstowy.h"
 
 using namespace std;
 
-class PlikZAdresatami {
-    const string NAZWA_PLIKU_Z_ADRESATAMI;
-    //string nazwaTymczasowegoPlikuZAdresatami; //do edytowania i usuwania, na pozniejszym etapie
-    int idOstatniegoAdresata;
+class PlikZAdresatami : public PlikTekstowy {
+    //const string NAZWA_PLIKU_Z_ADRESATAMI; //stworzyc nowa klase PlikTekstowy i w niej stworzyc atrybut NAZWA_PLIKU
 
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
     bool czyPlikJestPusty();
@@ -22,11 +21,13 @@ class PlikZAdresatami {
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
 
 public:
-    PlikZAdresatami(string nazwaPlikuZAdresatami) : NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {};
+    //PlikZAdresatami(string nazwaPlikuZAdresatami) : NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {};
+    PlikZAdresatami(string nazwaPlikuZAdresatami) : PlikTekstowy(nazwaPlikuZAdresatami) {};
     void dopiszAdresataDoPliku(Adresat adresat);
     vector<Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami();
-    void aktualizowaniePlikuZDanymiAdresatow(vector<Adresat> adresaci, int idAdresataDoEdycji);
+    void aktualizowaniePlikuZDanymiAdresatowPoEdycji(Adresat adresat);
+    void aktualizowaniePlikuZDanymiAdresatowPoUsunieciu(int idAdresataDoUsuniecia);
 };
 
 #endif
