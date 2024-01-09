@@ -19,7 +19,7 @@ class UzytkownikMenedzer {
     PlikZUzytkownikami plikZUzytkownikami;
     int idZalogowanegoUzytkownika;
 
-    Uzytkownik podajDaneNowegoUzytkownika(); //metoda prywatna
+    Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(string login);
 

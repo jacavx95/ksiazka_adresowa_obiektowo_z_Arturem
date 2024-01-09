@@ -1,13 +1,3 @@
-1|1|R|R|r|r|r|
-2|2|V|V|v|v|v|
-3|1|T|T|t|t|t|
-4|1|N|N|n|n|n|
-5|6|R|R|R|R|R|
-6|7|Y|Y|y|y|y|
-7|8|Lolo|Bobo|b|nowyemail|b|
-8|9|Programista|Programista|jaca|jaca|jaca|
-10|9|Rrrr|R|RRRRRRRRRR|r|r|
-11|9|Sfg|Uyuyuyuyuy|dfb|dfgh|d|
-17|8|Sdgsdg|Rsgasdgd|fagdsf|gfdasgds|xffdg|
-20|9|Lolo|Jojo|h|h|h|
-21|9|B|B|b|b|b|
+1|9|Q|Q|q|q|q|
+3|9|E|E|e|e|e|
+4|9|G|G|g|g|g|

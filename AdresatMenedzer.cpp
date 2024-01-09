@@ -41,7 +41,9 @@ void AdresatMenedzer::dodajAdresata() {
 
 Adresat AdresatMenedzer::podajDaneNowegoAdresata() {
     Adresat adresat;
-    int idOstatniegoAdresata = plikZAdresatami.pobierzIdAdresataZDanychOddzielonychPionowymiKreskami();
+    int idOstatniegoAdresata;
+
+    idOstatniegoAdresata = plikZAdresatami.pobierzIdOstatniegoAdresataZPliku();
 
     adresat.ustawId(++idOstatniegoAdresata);
     adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
@@ -72,11 +74,9 @@ void AdresatMenedzer::wyszukajAdresatowPoImieniu(){
     cout << "Podaj imie osoby jaka nalezy wyszukac: ";
     imie = MetodyPomocnicze::wczytajLinie();
     for (int i = 0; i < (int)adresaci.size(); i++) {
-        if (adresaci[i].pobierzIdUzytkownika() == ID_ZALOGOWANEGO_UZYTKOWNIKA) {
-            if (adresaci[i].pobierzImie() == imie) {
-                sprawdzenie = true;
-                wyswietlDaneAdresata(adresaci[i]);
-            }
+        if (adresaci[i].pobierzImie() == imie) {
+            sprawdzenie = true;
+            wyswietlDaneAdresata(adresaci[i]);
         }
     }
     if (!sprawdzenie) cout << endl << "Brak takiego wpisu w ksiazce adresowej" << endl << endl;
@@ -89,11 +89,9 @@ void AdresatMenedzer::wyszukajAdresatowPoNazwisku(){
     cout << "Poda nazwisko osoby jaka nalezy wyszukac: ";
     nazwisko = MetodyPomocnicze::wczytajLinie();
     for (int i = 0; i < (int)adresaci.size(); i++) {
-        if (adresaci[i].pobierzIdUzytkownika() == ID_ZALOGOWANEGO_UZYTKOWNIKA) {
-            if (adresaci[i].pobierzNazwisko() == nazwisko) {
-                sprawdzenie = true;
-                wyswietlDaneAdresata(adresaci[i]);
-            }
+        if (adresaci[i].pobierzNazwisko() == nazwisko) {
+            sprawdzenie = true;
+            wyswietlDaneAdresata(adresaci[i]);
         }
     }
     if (!sprawdzenie) cout << endl << "Brak takiego wpisu w ksiazce adresowej" << endl << endl;
@@ -101,7 +99,6 @@ void AdresatMenedzer::wyszukajAdresatowPoNazwisku(){
 }
 
 void AdresatMenedzer::edytujAdresata() {
-    char wybor;
     int idAdresataDoEdycji = 0;
     bool sprawdzenieCzyTakiAdresatIstnieje = false;
     bool zakonczenieEdytowaniaAdesata = false;
@@ -110,16 +107,14 @@ void AdresatMenedzer::edytujAdresata() {
         cout << "Wpisz ID adresata do edycji" << endl;
         idAdresataDoEdycji = MetodyPomocnicze::wczytajLiczbe();
         for (int i=0; i < (int) adresaci.size(); i++) {
-            //if (ID_ZALOGOWANEGO_UZYTKOWNIKA == adresaci[i].pobierzIdUzytkownika()) {
                 if (idAdresataDoEdycji == adresaci[i].pobierzId()) {
                     sprawdzenieCzyTakiAdresatIstnieje = true;
                     cout << endl << "Znaleziono adresata: " << endl;
                     wyswietlDaneAdresata(adresaci[i]);
-                    wybor = podajDaneAdresataDoEdycji(i);
-                    if (wybor != '6') plikZAdresatami.aktualizowaniePlikuZDanymiAdresatowPoEdycji(adresaci[i]);
+                    adresaci[i] = wybierzDaneAdresataDoEdycji(adresaci[i]);
+                    plikZAdresatami.aktualizowaniePlikuZDanymiAdresatowPoEdycji(adresaci[i]);
                     zakonczenieEdytowaniaAdesata = true;
                 }
-            //}
         }
         if (sprawdzenieCzyTakiAdresatIstnieje == false) {
             if (menuPrzyBrakuAdresata() == '2') zakonczenieEdytowaniaAdesata = true;
@@ -127,7 +122,7 @@ void AdresatMenedzer::edytujAdresata() {
     }
 }
 
-char AdresatMenedzer::podajDaneAdresataDoEdycji(int numerElementuWektora) {
+Adresat AdresatMenedzer::wybierzDaneAdresataDoEdycji(Adresat adresat) {
     char wybor;
 
     cout << endl << "Wybierz dana, ktora chcesz edytowac:" << endl << endl;
@@ -143,27 +138,29 @@ char AdresatMenedzer::podajDaneAdresataDoEdycji(int numerElementuWektora) {
     switch (wybor) {
         case '1': {
             cout << "Podaj nowe imie: ";
-            adresaci[numerElementuWektora].ustawImie(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+            adresat.ustawImie(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+            cout << "nowe imie to: " << adresat.pobierzImie() << endl;
+            cout << "nazwisko to: " << adresat.pobierzNazwisko() << endl;
             break;
         }
         case '2': {
             cout << "Podaj nowe nazwisko: ";
-            adresaci[numerElementuWektora].ustawNazwisko(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+            adresat.ustawNazwisko(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
             break;
         }
         case '3': {
             cout << "Podaj nowy numer telefonu: ";
-            adresaci[numerElementuWektora].ustawNumerTelefonu(MetodyPomocnicze::wczytajLinie());
+            adresat.ustawNumerTelefonu(MetodyPomocnicze::wczytajLinie());
             break;
         }
         case '4': {
             cout << "Podaj nowy email: ";
-            adresaci[numerElementuWektora].ustawEmail(MetodyPomocnicze::wczytajLinie());
+            adresat.ustawEmail(MetodyPomocnicze::wczytajLinie());
             break;
         }
         case '5': {
             cout << "Podaj nowy adres: ";
-            adresaci[numerElementuWektora].ustawAdres(MetodyPomocnicze::wczytajLinie());
+            adresat.ustawAdres(MetodyPomocnicze::wczytajLinie());
             break;
         }
         case '6': {
@@ -173,7 +170,7 @@ char AdresatMenedzer::podajDaneAdresataDoEdycji(int numerElementuWektora) {
     }
     if (wybor != '6') cout << endl << "Dane zostana zaktualizowane" << endl;
     system("pause");
-    return wybor;
+    return adresat;
 }
 
 void AdresatMenedzer::usunAdresata() {
@@ -186,16 +183,31 @@ void AdresatMenedzer::usunAdresata() {
         cout << "Wpisz ID adresata do usuniecia" << endl;
         idAdresataDoUsuniecia = MetodyPomocnicze::wczytajLiczbe();
         for (int i=0; i < (int) adresaci.size(); i++) {
-            //if (adresaci[i].pobierzIdUzytkownika() == ID_ZALOGOWANEGO_UZYTKOWNIKA) {
                 if (idAdresataDoUsuniecia == adresaci[i].pobierzId()) {
                     sprawdzenieCzyTakiAdresatIstnieje = true;
                     cout << "Znaleziono adresata: " << adresaci[i].pobierzId() << endl << endl;
                     wyswietlDaneAdresata(adresaci[i]);
-                    wybor = usunWpisKsiazkiAdresowej(i);
-                    if (wybor != 'n') plikZAdresatami.aktualizowaniePlikuZDanymiAdresatowPoUsunieciu(idAdresataDoUsuniecia);
+
+                    cout << endl << "Czy na pewno chcesz usunac tego adresata? Wpisz 't', aby potwierdzic lub 'n' aby odrzucic." << endl << endl;
+
+                    wybor = MetodyPomocnicze::wczytajZnak();
+
+                    switch (wybor) {
+                        case 't': {
+                            adresaci.erase(adresaci.begin() + i);
+                            break;
+                        }
+                        case 'n': {
+                            break;
+                        }
+                    }
+                    if (wybor != 'n') {
+                        cout << endl << "Dane zostaly zaktualizowane" << endl;
+                        plikZAdresatami.aktualizowaniePlikuZDanymiAdresatowPoUsunieciu(idAdresataDoUsuniecia);
+                        system("pause");
+                    }
                     zakonczenieUsuwaniaAdesata = true;
                 }
-            //}
         }
         if (sprawdzenieCzyTakiAdresatIstnieje == false) {
             if (menuPrzyBrakuAdresata() == '2') zakonczenieUsuwaniaAdesata = true;

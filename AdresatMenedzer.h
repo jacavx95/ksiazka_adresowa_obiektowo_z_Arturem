@@ -20,7 +20,7 @@ class AdresatMenedzer {
 
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
-    char podajDaneAdresataDoEdycji(int numerElementuWektora);
+    Adresat wybierzDaneAdresataDoEdycji(Adresat adresat);
     char menuPrzyBrakuAdresata();
     char usunWpisKsiazkiAdresowej(int numerElementuWektora);
 

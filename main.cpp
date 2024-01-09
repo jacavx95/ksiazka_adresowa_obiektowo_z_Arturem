@@ -50,7 +50,6 @@ int main() {
                         ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
                         break;
                     case '8':
-                        //adresaci.clear();
                         ksiazkaAdresowa.wylogowanie();
                         break;
                 }

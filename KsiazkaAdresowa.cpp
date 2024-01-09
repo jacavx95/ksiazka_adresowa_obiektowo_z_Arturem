@@ -29,11 +29,21 @@ void KsiazkaAdresowa::dodajAdresata() {
 }
 
 void KsiazkaAdresowa::wyszukajAdresatowPoImieniu(){
-    adresatMenedzer->wyszukajAdresatowPoImieniu();
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
+        adresatMenedzer->wyszukajAdresatowPoImieniu();
+    else {
+        cout << "Aby wyszukac adresata, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
 void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku(){
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
     adresatMenedzer->wyszukajAdresatowPoNazwisku();
+    else {
+        cout << "Aby wyszukac adresata, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
@@ -46,11 +56,21 @@ void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {
 }
 
 void KsiazkaAdresowa::edytujAdresata() {
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
     adresatMenedzer->edytujAdresata();
+    else {
+        cout << "Aby edytowac adresata, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
 void KsiazkaAdresowa::usunAdresata() {
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
     adresatMenedzer->usunAdresata();
+    else {
+        cout << "Aby usunac adresata, nalezy sie najpierw zalogowac" << endl;
+        system("pause");
+    }
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
